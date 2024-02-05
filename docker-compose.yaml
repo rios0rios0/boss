@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  grafana:
+    image: 'grafana/grafana:latest'
+    volumes:
+      - 'grafana:/var/lib/grafana'
+      - './grafana/dashboards:/etc/grafana/provisioning/dashboards'
+      - './grafana/data-sources:/etc/grafana/provisioning/datasources'
+    ports:
+      - '3000:3000'
+
+  prometheus:
+    image: 'prom/prometheus:latest'
+    volumes:
+      - 'prometheus:/prometheus'
+      - './prometheus/config.yaml:/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    extra_hosts:
+      - "host.docker.wsl:${WSL_GATEWAY}"
+
+volumes:
+  grafana:
+  prometheus:

@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  open-api:
+    build:
+      context: 'apache-jmeter'
+      dockerfile: 'open-api.Dockerfile'
+    environment:
+      INPUT_FOLDER: '/home/app/input'
+      OUTPUT_FOLDER: '/home/app/output'
+      TARGET_DOCS_URL: "http://host.docker.wsl:8080/docs.yaml"
+    volumes:
+      - './apache-jmeter/input:/home/app/input'
+      - './apache-jmeter/output:/home/app/output'
+    extra_hosts:
+      - "host.docker.wsl:${WSL_GATEWAY}"
+
+  jmeter:
+    build:
+      context: 'apache-jmeter'
+      dockerfile: 'jmeter.Dockerfile'
+    environment:
+      INPUT_FOLDER: '/home/app/input'
+      OUTPUT_FOLDER: '/home/app/output'
+      TARGET_API_NAMES: 'Api1,Api2,Api3'
+    volumes:
+      - './apache-jmeter/input:/home/app/input'
+      - './apache-jmeter/output:/home/app/output'
+    depends_on:
+      - 'open-api'

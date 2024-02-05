@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  h2load:
+    build:
+      context: 'nghttp2'
+      dockerfile: 'Dockerfile'
+    environment:
+      TARGET_URL: "http://host.docker.wsl:8080"
+      TARGET_RELATIVE_PATH: "/api/path/to/it"
+      REQUESTS_HEADER: "any-header: any-value"
+      REQUESTS_TOTAL: 100000
+      REQUESTS_CONCURRENT: 100
+    extra_hosts:
+      - "host.docker.wsl:${WSL_GATEWAY}"

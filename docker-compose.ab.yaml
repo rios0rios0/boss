@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  benchmark:
+    build:
+      context: 'apache-benchmark'
+      dockerfile: 'Dockerfile'
+    environment:
+      TARGET_URL: "http://host.docker.wsl:8080"
+      TARGET_RELATIVE_PATH: "/api/path/to/it"
+      REQUESTS_HEADER: "any-header: any-value"
+      REQUESTS_TOTAL: 100000
+      REQUESTS_CONCURRENT: 100
+      SOCKET_TIMEOUT_SECONDS: 300
+    volumes:
+      - 'apache-benchmark:/tmp/:rw'
+    extra_hosts:
+      - "host.docker.wsl:${WSL_GATEWAY}"
+
+volumes:
+  apache-benchmark:
