@@ -1,0 +1,22 @@
+import pandas as pd
+
+df = pd.read_csv('output/your csv', nrows = 1000)
+
+total_executions = len(df)
+
+start_time = df['timeStamp'].min()
+end_time = df['timeStamp'].max()
+total_time = (end_time - start_time) / 1000  
+throughput = total_executions / total_time
+
+
+min_response_time = df['elapsed'].min()
+max_response_time = df['elapsed'].max()
+avg_response_time = df['elapsed'].mean()
+
+print(f"Total executions: {total_executions}")
+print(f"Throughput: {throughput:.2f} requests/second")
+print(f"Response time (ms):")
+print(f"Min - {min_response_time}")
+print(f"Max - {max_response_time}")
+print(f"Average - {avg_response_time:.2f}")

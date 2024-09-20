@@ -23,6 +23,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 - added Grafana + Prometheus as a monitoring platform to check API performance and consumption
 - added OpenApi specification conversion to JMX specification file to be used inside the JMeter
 - added Apache JMeter test file to manage all API tests
+- added python script to read and concisely print output csv
 
 ### Changed
 
