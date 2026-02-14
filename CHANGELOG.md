@@ -16,6 +16,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
+
 ### Added
 
 - added Apache Benchmark to perform stress test against every URL
