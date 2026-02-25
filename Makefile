@@ -1,6 +1,8 @@
 $(eval WSL_GATEWAY = $(shell sh -c "ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3"))
 export WSL_GATEWAY
 
+.PHONY: up-scrap start-ab start-h2 start-aj
+
 up-scrap:
 	docker-compose -f docker-compose.yaml up -d
 
