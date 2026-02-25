@@ -1,69 +1,58 @@
-# Boss
+<h1 align="center">Boss</h1>
+<p align="center">
+    <a href="https://github.com/rios0rios0/boss/releases/latest">
+        <img src="https://img.shields.io/github/release/rios0rios0/boss.svg?style=for-the-badge&logo=github" alt="Latest Release"/></a>
+    <a href="https://github.com/rios0rios0/boss/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/rios0rios0/boss.svg?style=for-the-badge&logo=github" alt="License"/></a>
+</p>
 
 > Because just like a real boss, it puts your APIs under stress.
 
 Docker-based performance testing toolkit that orchestrates load testing with Apache Benchmark, JMeter, and h2load alongside a Prometheus + Grafana monitoring stack. Includes OpenAPI-to-JMX conversion, Python-powered result analysis, and WSL2-aware networking for seamless local development.
 
-## Table of Contents
-
-- [Features](#features)
-- [Architecture](#architecture)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Monitoring Stack (Grafana + Prometheus)](#monitoring-stack-grafana--prometheus)
-  - [Apache Benchmark](#apache-benchmark)
-  - [Apache JMeter](#apache-jmeter)
-  - [HTTP/2 Load Testing (h2load)](#http2-load-testing-h2load)
-- [Utility Scripts](#utility-scripts)
-  - [Endpoint Tester](#endpoint-tester)
-  - [JMeter Result Analyzer](#jmeter-result-analyzer)
-  - [JMeter CSV to HTML Report](#jmeter-csv-to-html-report)
-- [Configuration](#configuration)
-  - [Environment Variables](#environment-variables)
-  - [Prometheus Targets](#prometheus-targets)
-  - [Grafana Dashboards](#grafana-dashboards)
-- [Project Structure](#project-structure)
-- [License](#license)
-
 ## Features
 
-- **Multi-tool load testing** — run stress tests with Apache Benchmark, Apache JMeter, or h2load, each in isolated Docker containers
-- **OpenAPI to JMX conversion** — automatically convert OpenAPI specs into JMeter test plans
-- **Monitoring stack** — pre-configured Grafana dashboards and Prometheus scraping for real-time performance metrics
-- **WSL2-aware networking** — auto-detects the WSL gateway IP so containers can reach services on the host
-- **Result analysis** — Python scripts for CSV-based throughput/response-time analysis and endpoint validation
+- **Multi-tool load testing** -- run stress tests with Apache Benchmark, Apache JMeter, or h2load, each in isolated Docker containers
+- **OpenAPI to JMX conversion** -- automatically convert OpenAPI specs into JMeter test plans
+- **Monitoring stack** -- pre-configured Grafana dashboards and Prometheus scraping for real-time performance metrics
+- **WSL2-aware networking** -- auto-detects the WSL gateway IP so containers can reach services on the host
+- **Result analysis** -- Python scripts for CSV-based throughput/response-time analysis and endpoint validation
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        Boss Toolkit                         │
-├──────────────┬──────────────┬──────────────┬────────────────┤
-│   Apache     │   Apache     │   h2load     │  Monitoring    │
-│   Benchmark  │   JMeter     │  (HTTP/2)    │  Stack         │
-│              │              │              │                │
-│  ab stress   │  OpenAPI →   │  nghttp2     │  Prometheus    │
-│  testing     │  JMX → run   │  stress test │  + Grafana     │
-├──────────────┴──────────────┴──────────────┴────────────────┤
-│                     Docker Compose                          │
-├─────────────────────────────────────────────────────────────┤
-│              WSL2 Host Network (auto-detected)              │
-└─────────────────────────────────────────────────────────────┘
++-------------------------------------------------------------+
+|                        Boss Toolkit                         |
++--------------+--------------+--------------+----------------+
+|   Apache     |   Apache     |   h2load     |  Monitoring    |
+|   Benchmark  |   JMeter     |  (HTTP/2)    |  Stack         |
+|              |              |              |                |
+|  ab stress   |  OpenAPI ->  |  nghttp2     |  Prometheus    |
+|  testing     |  JMX -> run  |  stress test |  + Grafana     |
++--------------+--------------+--------------+----------------+
+|                     Docker Compose                          |
++-------------------------------------------------------------+
+|              WSL2 Host Network (auto-detected)              |
++-------------------------------------------------------------+
 ```
 
-## Prerequisites
+## Installation
+
+### Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) (v2+)
 - WSL2 (if running on Windows) with `ifconfig` available (`net-tools` package)
 - Python 3 with `pandas` and `requests` (only for the utility scripts)
 
-## Getting Started
+### WSL2 Gateway Setup
 
 All Compose files rely on the `WSL_GATEWAY` environment variable so containers can reach services running on the host. The Makefile sets this automatically, but you can also export it manually:
 
 ```bash
 export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
 ```
+
+## Usage
 
 ### Monitoring Stack (Grafana + Prometheus)
 
@@ -116,8 +105,8 @@ make start-aj
 
 This spins up two services:
 
-1. **open-api** — downloads your OpenAPI spec and converts it to `.jmx` test plans
-2. **jmeter** — executes the generated test plans and outputs results
+1. **open-api** -- downloads your OpenAPI spec and converts it to `.jmx` test plans
+2. **jmeter** -- executes the generated test plans and outputs results
 
 Configure in `docker-compose.aj.yaml`:
 
@@ -265,6 +254,10 @@ boss/
 ├── docker-compose.h2.yaml     # h2load (HTTP/2)
 └── Makefile                   # Convenience commands
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
