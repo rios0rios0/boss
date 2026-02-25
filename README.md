@@ -4,6 +4,10 @@
         <img src="https://img.shields.io/github/release/rios0rios0/boss.svg?style=for-the-badge&logo=github" alt="Latest Release"/></a>
     <a href="https://github.com/rios0rios0/boss/blob/main/LICENSE">
         <img src="https://img.shields.io/github/license/rios0rios0/boss.svg?style=for-the-badge&logo=github" alt="License"/></a>
+    <a href="https://sonarcloud.io/summary/overall?id=rios0rios0_boss">
+        <img src="https://img.shields.io/sonar/coverage/rios0rios0_boss?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarqubecloud" alt="Coverage"/></a>
+    <a href="https://sonarcloud.io/summary/overall?id=rios0rios0_boss">
+        <img src="https://img.shields.io/sonar/quality_gate/rios0rios0_boss?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarqubecloud" alt="Quality Gate"/></a>
 </p>
 
 > Because just like a real boss, it puts your APIs under stress.
