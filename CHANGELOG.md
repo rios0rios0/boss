@@ -16,14 +16,11 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
-### Changed
-
-- replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
+## [0.1.0] - 2026-03-10
 
 ### Added
 
 - added Apache Benchmark to perform stress test against every URL
-- added Apache JMeter to perform stress test against Java APIs
 - added Grafana + Prometheus as a monitoring platform to check API performance and consumption
 - added OpenApi specification conversion to JMX specification file to be used inside the JMeter
 - added Apache JMeter test file to manage all API tests
@@ -32,8 +29,6 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Changed
 
+- replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
 - corrected structure to get WSL IP automatically through the `ifconfig`
 
-### Removed
-
--
