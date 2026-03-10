@@ -19,9 +19,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Changed
 
 - replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
-- changed the Docker base image alpine from 3.16.1 to 3.16.9
+- changed the Docker base images using Alpine from 3.16.1 to 3.16.9 (apache-benchmark/Dockerfile, nghttp2/Dockerfile)
 - changed the Docker base image amazoncorretto from 17.0.4-alpine to 17.0.18-alpine
-- changed the Docker base image alpine from 3.16.1 to 3.16.9
 
 ### Added
 
