@@ -1,4 +1,4 @@
-FROM amazoncorretto:17.0.4-alpine@sha256:7d36057828a4f1eddeb23e10f48f514d68b551887c9d98bf547f1fe8944fe821
+FROM amazoncorretto:17.0.18-alpine
 
 ARG JMETER_VERSION="5.5"
 RUN cd /opt \
