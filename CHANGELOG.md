@@ -21,16 +21,17 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Added
 
 - added Apache Benchmark to perform stress test against every URL
+- added Apache JMeter to perform stress test against Java APIs
+- added Apache JMeter test file to manage all API tests
 - added Grafana + Prometheus as a monitoring platform to check API performance and consumption
 - added OpenApi specification conversion to JMX specification file to be used inside the JMeter
-- added Apache JMeter test file to manage all API tests
 - added Python script to read and concisely print output csv
 - added Python script to verify the behavior of a list of endpoints
 
 ### Changed
 
-- replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
-- changed the Docker base images using Alpine from 3.16.1 to 3.16.9 (apache-benchmark/Dockerfile, nghttp2/Dockerfile)
 - changed the Docker base image amazoncorretto from 17.0.4-alpine to 17.0.18-alpine
+- changed the Docker base images using Alpine from 3.16.1 to 3.16.9 (apache-benchmark/Dockerfile, nghttp2/Dockerfile)
 - corrected structure to get WSL IP automatically through the `ifconfig`
+- replaced minimal README with comprehensive documentation covering all tools, configuration, and project structure
 
