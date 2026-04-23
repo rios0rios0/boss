@@ -16,6 +16,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- changed the Docker base image `amazoncorretto` from `17.0.18-alpine` to `17.0.19-alpine`
+
 ## [0.1.0] - 2026-03-12
 
 ### Added
