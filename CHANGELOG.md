@@ -16,6 +16,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-04-23
+
 ### Changed
 
 - changed the Docker base image `amazoncorretto` from `17.0.18-alpine` to `17.0.19-alpine`
@@ -25,8 +27,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Added
 
 - added Apache Benchmark to perform stress test against every URL
-- added Apache JMeter to perform stress test against Java APIs
 - added Apache JMeter test file to manage all API tests
+- added Apache JMeter to perform stress test against Java APIs
 - added Grafana + Prometheus as a monitoring platform to check API performance and consumption
 - added OpenApi specification conversion to JMX specification file to be used inside the JMeter
 - added Python script to read and concisely print output csv
