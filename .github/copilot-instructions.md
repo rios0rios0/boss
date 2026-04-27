@@ -115,7 +115,7 @@ boss/
 ├── docker-compose.ab.yaml       # Apache Benchmark testing
 ├── docker-compose.aj.yaml       # Apache JMeter testing  
 ├── docker-compose.h2.yaml       # h2load HTTP/2 testing
-├── apache-benchmark/            # Apache Benchmark container (Alpine 3.16.1)
+├── apache-benchmark/            # Apache Benchmark container (Alpine 3.16.9)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── apache-jmeter/               # JMeter container and configs
@@ -126,7 +126,7 @@ boss/
 │   ├── open-api.Dockerfile      # OpenAPI-to-JMX converter (openapi-generator-cli v6.0.1)
 │   ├── open-api.entrypoint.sh
 │   └── result_describer         # Python CSV analyzer script
-├── nghttp2/                     # h2load container (Alpine 3.16.1)
+├── nghttp2/                     # h2load container (Alpine 3.16.9)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── grafana/

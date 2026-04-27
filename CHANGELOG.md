@@ -16,6 +16,14 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Added
+
+- added `CLAUDE.md` with build commands, key conventions, and utility script references
+
+### Changed
+
+- refreshed `.github/copilot-instructions.md` to correct Alpine base image version from 3.16.1 to 3.16.9
+
 ## [0.1.1] - 2026-04-23
 
 ### Changed
