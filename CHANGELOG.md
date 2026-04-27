@@ -16,6 +16,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-04-27
+
 ### Added
 
 - added `CLAUDE.md` with build commands, key conventions, and utility script references
