@@ -101,8 +101,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
 - **WSL Networking**: Requires dynamic IP detection for proper container communication
   - **CRITICAL**: Always export WSL_GATEWAY before running Docker commands
 
-- **No CI/CD Workflows**: The `.github/workflows/` directory contains only a `.gitkeep` placeholder — no automated pipelines are configured yet
-  - **NOTE**: All validation must be done manually as described in the sections above
+- **CI/CD**: A `release.yaml` workflow runs on push to `main` and delegates to a reusable release pipeline (`rios0rios0/pipelines`). There are no test or lint workflows — all validation must be done manually as described above
 
 ## Common Tasks
 
