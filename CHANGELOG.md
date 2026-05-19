@@ -16,6 +16,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- refreshed `.github/copilot-instructions.md` to document the `release.yaml` CI workflow (was incorrectly listed as having no CI/CD)
+
 ## [0.2.0] - 2026-04-28
 
 ### Added
