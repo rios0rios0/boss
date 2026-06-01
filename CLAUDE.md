@@ -43,4 +43,4 @@ python3 scripts/test_endpoints.py         # endpoint validation (edit test_cases
 python3 apache-jmeter/result_describer    # JMeter CSV result analysis (edit CSV path in script)
 ```
 
-Both require `pandas` and `requests`.
+`test_endpoints.py` requires `requests`; `result_describer` requires `pandas`.

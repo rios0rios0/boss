@@ -134,7 +134,7 @@ boss/
 ├── prometheus/
 │   └── config.yaml              # Prometheus scrape configuration
 └── scripts/
-    └── test_endpoints.py        # Endpoint validation script (requires: pandas, requests)
+    └── test_endpoints.py        # Endpoint validation script (requires: requests)
 ```
 
 ### Key Configuration Files
