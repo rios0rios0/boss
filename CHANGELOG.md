@@ -16,6 +16,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to correct the Python dependency attribution (`test_endpoints.py` needs only `requests`, `result_describer` needs only `pandas`)
+
 ## [0.2.1] - 2026-05-19
 
 ### Changed
