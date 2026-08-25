@@ -9,6 +9,7 @@ development practices, refer to the **[Development Guide](https://github.com/rio
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) v2+
 - [Make](https://www.gnu.org/software/make/)
+- [Go](https://go.dev/dl/) (only to install `chlog`)
 - [chlog](https://github.com/luizjhonata/chlog) (`go install github.com/luizjhonata/chlog@latest`)
 - [Python 3](https://www.python.org/) with `pandas` and `requests` (only for utility scripts)
 - WSL2 with `net-tools` package (if running on Windows)
