@@ -9,6 +9,7 @@ development practices, refer to the **[Development Guide](https://github.com/rio
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) v2+
 - [Make](https://www.gnu.org/software/make/)
+- [chlog](https://github.com/luizjhonata/chlog) (`go install github.com/luizjhonata/chlog@latest`)
 - [Python 3](https://www.python.org/) with `pandas` and `requests` (only for utility scripts)
 - WSL2 with `net-tools` package (if running on Windows)
 
@@ -27,6 +28,9 @@ development practices, refer to the **[Development Guide](https://github.com/rio
    make start-ab     # Apache Benchmark
    make start-aj     # Apache JMeter
    ```
-6. Update `CHANGELOG.md` under `[Unreleased]`
+6. Add a changelog fragment — never edit `CHANGELOG.md`, which is generated from them:
+   ```bash
+   chlog new --kind Added --body "added the thing that was not there before"
+   ```
 7. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow)
 8. Open a pull request against `main`
