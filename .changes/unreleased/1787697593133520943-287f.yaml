@@ -1,3 +1,0 @@
-kind: 'Added'
-body: 'added [Go](https://go.dev/dl/) to the `CONTRIBUTING.md` prerequisites: installing `chlog` with `go install` needs a toolchain this repository does not otherwise require'
-time: '2026-08-25T22:39:53.133419172Z'
