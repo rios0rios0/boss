@@ -1,0 +1,3 @@
+kind: 'Added'
+body: 'added the Claude automated code review and `@claude` mention responder workflows, `claude-review.yaml` and `claude-mention.yaml`, matching the `reusable-claude-review.yaml` / `reusable-claude-mention.yaml` definitions they call in `rios0rios0/pipelines`, authenticating with the `CLAUDE_CODE_OAUTH_TOKEN` secret'
+time: '2026-08-27T18:00:00.000000000Z'
