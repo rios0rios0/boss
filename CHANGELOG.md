@@ -22,6 +22,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-09-01
+
+### Changed
+
+- refreshed `.github/copilot-instructions.md` to document the `claude-review.yaml` and `claude-mention.yaml` per-PR workflows added in `0.4.0`, replacing the stale "no per-PR CI exists yet" claim
+
 ## [0.4.0] - 2026-08-28
 
 ### Added
