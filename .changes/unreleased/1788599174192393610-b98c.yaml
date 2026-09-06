@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'changed the Docker base image `alpine` from `3.16.9` to `3.24.1`'
-time: '2026-09-05T09:06:14.19239361Z'

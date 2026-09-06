@@ -22,6 +22,17 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-09-06
+
+### Changed
+
+- changed the Docker base image `alpine` from `3.16.9` to `3.24.1`
+- changed the Docker base image `amazoncorretto` from `17.0.20-alpine` to `26.0.2-alpine`
+
+### Security
+
+- restricted the JMeter download in `jmeter.Dockerfile` to HTTPS without following redirects and verified the tarball against its published SHA-512 checksum
+
 ## [0.5.0] - 2026-09-02
 
 ### Added

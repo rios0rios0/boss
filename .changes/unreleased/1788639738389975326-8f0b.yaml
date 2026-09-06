@@ -1,3 +1,0 @@
-kind: 'Security'
-body: 'restricted the JMeter download in `jmeter.Dockerfile` to HTTPS without following redirects and verified the tarball against its published SHA-512 checksum'
-time: '2026-09-05T20:22:18.389891628Z'
