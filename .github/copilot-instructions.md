@@ -102,7 +102,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
   - **CRITICAL**: Always export WSL_GATEWAY before running Docker commands
 
 - **CI/CD**: four workflows, all delegating to reusable workflows in `rios0rios0/pipelines`:
-  - `.github/workflows/checks.yaml` — runs on pull requests targeting `main` and executes the shared checks pipeline (linting, SAST/gitleaks, quality gates).
+  - `.github/workflows/checks.yaml` — runs on pull requests targeting `main` and executes the shared repository-hygiene checks (rebase status against the base branch and the changelog/chlog gate).
   - `.github/workflows/release.yaml` — runs on pushes to `main` and cuts releases.
   - `.github/workflows/claude-review.yaml` — runs on pull requests (`opened`, `synchronize`, `ready_for_review`, `reopened`) and posts an automated Claude code review.
   - `.github/workflows/claude-mention.yaml` — responds to `@claude` mentions in issues, PRs, and review comments.
