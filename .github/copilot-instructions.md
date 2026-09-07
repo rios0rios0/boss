@@ -101,7 +101,8 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
 - **WSL Networking**: Requires dynamic IP detection for proper container communication
   - **CRITICAL**: Always export WSL_GATEWAY before running Docker commands
 
-- **CI/CD**: three workflows, all delegating to reusable workflows in `rios0rios0/pipelines`:
+- **CI/CD**: four workflows, all delegating to reusable workflows in `rios0rios0/pipelines`:
+  - `.github/workflows/checks.yaml` — runs on pull requests targeting `main` and executes the shared checks pipeline (linting, SAST/gitleaks, quality gates).
   - `.github/workflows/release.yaml` — runs on pushes to `main` and cuts releases.
   - `.github/workflows/claude-review.yaml` — runs on pull requests (`opened`, `synchronize`, `ready_for_review`, `reopened`) and posts an automated Claude code review.
   - `.github/workflows/claude-mention.yaml` — responds to `@claude` mentions in issues, PRs, and review comments.
@@ -118,18 +119,18 @@ boss/
 ├── docker-compose.ab.yaml       # Apache Benchmark testing
 ├── docker-compose.aj.yaml       # Apache JMeter testing  
 ├── docker-compose.h2.yaml       # h2load HTTP/2 testing
-├── apache-benchmark/            # Apache Benchmark container (Alpine 3.16.9)
+├── apache-benchmark/            # Apache Benchmark container (Alpine 3.24.1)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── apache-jmeter/               # JMeter container and configs
 │   ├── input/                   # JMX test plan inputs (populated by open-api service)
 │   ├── output/                  # Test results: CSV files + HTML reports
-│   ├── jmeter.Dockerfile        # JMeter 5.5 on Amazon Corretto 17
+│   ├── jmeter.Dockerfile        # JMeter 5.5 on Amazon Corretto 26 (Alpine)
 │   ├── jmeter.entrypoint.sh
 │   ├── open-api.Dockerfile      # OpenAPI-to-JMX converter (openapi-generator-cli v6.0.1)
 │   ├── open-api.entrypoint.sh
 │   └── result_describer         # Python CSV analyzer script
-├── nghttp2/                     # h2load container (Alpine 3.16.9)
+├── nghttp2/                     # h2load container (Alpine 3.24.1)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── grafana/
