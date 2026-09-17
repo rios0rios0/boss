@@ -1,4 +1,4 @@
-FROM amazoncorretto:26.0.2-alpine
+FROM amazoncorretto:27.0.0-alpine
 
 ARG JMETER_VERSION="5.5"
 # SHA-512 published next to the tarball at
