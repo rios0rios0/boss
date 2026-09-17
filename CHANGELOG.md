@@ -22,6 +22,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-09-17
+
+### Changed
+
+- changed the Docker base image `amazoncorretto` from `26.0.2-alpine` to `27.0.0-alpine`
+
 ## [0.5.2] - 2026-09-08
 
 ### Changed
