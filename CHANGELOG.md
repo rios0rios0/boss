@@ -22,6 +22,13 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-09-23
+
+### Changed
+
+- changed the Docker base image `alpine` from `3.24.1` to `3.24.2`
+- refreshed `.github/copilot-instructions.md` to correct the Alpine and Amazon Corretto base image versions
+
 ## [0.5.3] - 2026-09-17
 
 ### Changed
