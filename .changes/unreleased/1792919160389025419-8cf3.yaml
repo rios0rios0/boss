@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'changed the Docker base image `amazoncorretto` from `27.0.0-alpine` to `27.0.1-alpine`'
+time: '2026-10-25T09:06:00.389025419Z'
