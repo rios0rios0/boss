@@ -20,7 +20,7 @@ The canonical engineering standards live in the
 repo-tailored index into that guide plus the rules that only apply here. Precedence, highest
 first:
 
-1. This repository's `.github/copilot-instructions.md`, `CLAUDE.md`, and `CONTRIBUTING.md` —
+1. This repository's `AGENTS.md`, `.github/copilot-instructions.md`, and `CONTRIBUTING.md` —
    they describe *this* codebase and its load-bearing invariants.
 2. The **rios0rios0/guide** wiki — the shared standard.
 3. General language idiom.
@@ -72,7 +72,7 @@ These are the checks that catch real defects in this repository. Work through
 them before the generic ones.
 
 - **No load target may be hard-coded.** Targets come from configuration and environment; a host committed as a default will be hammered by the next person who runs the stack. **Critical.**
-- **`WSL_GATEWAY` must be exported before any Docker command** — it is how the containers reach a service running on the WSL2 host. A script that assumes `localhost` works from inside a container is a defect that reports zero throughput with no error.
+- **`WSL_GATEWAY` must be set for every compose run** — the Makefile sets it itself; a direct `docker compose` call needs it exported. It is how the containers reach a service running on the WSL2 host. A script that assumes `localhost` works from inside a container is a defect that reports zero throughput with no error.
 - **The Makefile still uses the legacy `docker-compose` spelling** while the documented path is Docker Compose v2 (`docker compose`). Keep any new target consistent with whichever the Makefile actually invokes, and say which one you tested.
 - **Each compose file has one job** — `docker-compose.yaml` for the monitoring stack, `.ab.yaml`, `.aj.yaml`, `.h2.yaml` for the three load generators. Merging them, or adding a load generator to the monitoring stack, breaks the ability to run monitoring without generating load.
 - **Prometheus scrape targets and Grafana dashboards move together.** A metric renamed in `prometheus/` without the dashboard update leaves a panel silently empty.
@@ -142,7 +142,7 @@ hand.
 - Fragment bodies start with a lowercase verb in simple past tense, capitalise proper nouns
   (GitHub, Go, Docker), and wrap code identifiers and versions in backticks.
 - `README.md` is updated whenever usage, setup, configuration, or architecture changes;
-  `.github/copilot-instructions.md` and `CLAUDE.md` whenever the workflow, commands, or
+  `AGENTS.md` and `.github/copilot-instructions.md` whenever the workflow, commands, or
   structure changes. Documentation and code ship in one commit.
 
 ## Git Flow and pull-request hygiene
@@ -206,7 +206,7 @@ A review that raises noise gets ignored. Do not report these:
 ### Change-control checklist
 - [ ] Changelog entry present for every behavioural change
 - [ ] `README.md` updated if usage, setup, or architecture changed
-- [ ] `.github/copilot-instructions.md` and `CLAUDE.md` updated if the workflow, commands, or structure changed
+- [ ] `AGENTS.md` and `.github/copilot-instructions.md` updated if the workflow, commands, or structure changed
 - [ ] Commit messages follow `type(SCOPE): message` in simple past tense
 - [ ] Breaking changes flagged in the commit footer, the changelog, and the PR description
 
