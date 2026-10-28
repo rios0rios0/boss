@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, GitHub Copilot) when working with code in this repository.
 
 ## Overview
 
@@ -8,13 +8,13 @@ Boss is a Docker-based performance testing toolkit. It orchestrates load testing
 
 ## Build and Run Commands
 
-Every docker-compose command requires `WSL_GATEWAY` to be set first:
+The compose files map `host.docker.wsl` to `WSL_GATEWAY`. The Makefile sets it itself; export it before calling `docker compose` directly:
 
 ```bash
 export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
 ```
 
-Makefile targets (use `docker-compose` v1 syntax internally):
+Makefile targets (they invoke the v1 `docker-compose` binary; where only Compose v2 is installed, run `docker compose -f <file> up -d` instead):
 
 | Target | Compose File | Purpose |
 |---|---|---|
@@ -23,24 +23,17 @@ Makefile targets (use `docker-compose` v1 syntax internally):
 | `start-aj` | `docker-compose.aj.yaml` | JMeter load test |
 | `start-h2` | `docker-compose.h2.yaml` | h2load HTTP/2 stress test |
 
-Alternatively, use `docker compose` (v2) directly:
-
-```bash
-docker compose -f docker-compose.yaml up -d
-```
-
 ## Key Conventions
 
-- The Makefile uses `docker-compose` (v1). Systems with only v2 should call `docker compose` directly.
 - Test targets and environment variables are configured per compose file, not via external config. Edit the relevant `docker-compose.*.yaml` to set `TARGET_URL`, `REQUESTS_TOTAL`, etc.
 - `prometheus/config.yaml` ships with placeholder targets -- it must be edited before Prometheus will scrape real metrics.
-- JMeter's OpenAPI-to-JMX pipeline: the `open-api` service downloads an OpenAPI spec and converts it to `.jmx` files in `apache-jmeter/input/`, then the `jmeter` service executes them and writes results to `apache-jmeter/output/`.
+- JMeter's OpenAPI-to-JMX pipeline: the `open-api` service downloads the spec to `apache-jmeter/input/open-api.yaml` and generates `.jmx` plans into `apache-jmeter/output/`. The `jmeter` service runs `apache-jmeter/input/<name>.jmx` for each name in `TARGET_API_NAMES` and writes `output/<name>-test.csv` plus an HTML report in `output/<name>/`, so the plans it runs must be in `input/`.
 
 ## Utility Scripts
 
 ```bash
 python3 scripts/test_endpoints.py         # endpoint validation (edit test_cases in script)
-python3 apache-jmeter/result_describer    # JMeter CSV result analysis (edit CSV path in script)
+cd apache-jmeter && python3 result_describer  # JMeter CSV analysis; the CSV path in the script is relative to the working directory
 ```
 
 `test_endpoints.py` requires `requests`; `result_describer` requires `pandas`.

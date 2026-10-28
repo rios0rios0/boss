@@ -2,12 +2,10 @@
 
 Boss is a comprehensive performance testing and monitoring toolkit that uses Docker containers to provide Apache Benchmark, Apache JMeter, nghttp2/h2load testing capabilities along with Grafana and Prometheus for monitoring and visualization.
 
-**Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
-
 ## Working Effectively
 
 ### Prerequisites and Environment Setup
-- **CRITICAL**: Always set the WSL_GATEWAY environment variable before running any Docker commands:
+- Export `WSL_GATEWAY` before running a compose file directly (the compose files map `host.docker.wsl` to it; the Makefile sets it itself):
   ```bash
   export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
   ```
@@ -28,7 +26,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
   export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
   docker compose -f docker-compose.yaml up -d
   ```
-  - **TIMING**: Takes 2-3 minutes for initial pull. NEVER CANCEL. Set timeout to 300+ seconds.
+  - The first image pull takes 2-3 minutes; allow a timeout of at least 300 seconds.
   - Grafana accessible at http://localhost:3000
   - Prometheus accessible at http://localhost:9090
   - **WARNING**: Prometheus may start but scrape targets will fail until `prometheus/config.yaml` is updated with real targets.
@@ -38,7 +36,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
   export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
   docker compose -f docker-compose.ab.yaml up
   ```
-  - **TIMING**: Build takes 5-10 minutes on first run. NEVER CANCEL. Set timeout to 600+ seconds.
+  - The first build takes 5-10 minutes; allow at least 600 seconds.
   - **WARNING**: May fail in environments with restricted network access.
 
 - **Apache JMeter testing:**
@@ -46,7 +44,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
   export WSL_GATEWAY=$(ifconfig eth0 | grep 'inet ' | sed -e 's/  */:/g' | cut -d: -f3)
   docker compose -f docker-compose.aj.yaml up
   ```
-  - **TIMING**: Build and execution takes 10-15 minutes. NEVER CANCEL. Set timeout to 900+ seconds.
+  - Build and execution take 10-15 minutes; allow at least 900 seconds.
 
 - **h2load (HTTP/2) testing:**
   ```bash
@@ -68,14 +66,14 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
 #### Result Analysis
 - Analyze JMeter CSV results:
   ```bash
-  python3 apache-jmeter/result_describer
+  cd apache-jmeter && python3 result_describer
   ```
-  - Edit the CSV filename inside the script (`output/your csv`) before running
+  - The script reads `output/your csv` relative to the working directory: set the file name (JMeter writes `output/<ApiName>-test.csv`) and run it from `apache-jmeter/`
   - JMeter output CSVs are written to `apache-jmeter/output/`
   - Provides: total executions, throughput (req/s), and min/max/average response times (ms)
 
 ### Manual Validation Scenarios
-**CRITICAL**: After building and running any testing configuration, you MUST:
+After running a testing configuration, verify it:
 
 1. **Monitor Stack Validation:**
    - Access Grafana at http://localhost:3000 (should return HTTP 302)
@@ -99,7 +97,7 @@ Boss is a comprehensive performance testing and monitoring toolkit that uses Doc
   - **EXPECTED**: Prometheus container will start but metrics scraping will fail until `prometheus/config.yaml` is updated with real targets; Grafana UI will still work
   
 - **WSL Networking**: Requires dynamic IP detection for proper container communication
-  - **CRITICAL**: Always export WSL_GATEWAY before running Docker commands
+  - Export `WSL_GATEWAY` before running a compose file directly
 
 - **CI/CD**: four workflows, all delegating to reusable workflows in `rios0rios0/pipelines`:
   - `.github/workflows/checks.yaml` — runs on pull requests targeting `main` and executes the shared repository-hygiene checks (rebase status against the base branch and the changelog/chlog gate).
@@ -119,18 +117,18 @@ boss/
 ├── docker-compose.ab.yaml       # Apache Benchmark testing
 ├── docker-compose.aj.yaml       # Apache JMeter testing  
 ├── docker-compose.h2.yaml       # h2load HTTP/2 testing
-├── apache-benchmark/            # Apache Benchmark container (Alpine 3.24.2)
+├── apache-benchmark/            # Apache Benchmark container (Alpine)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── apache-jmeter/               # JMeter container and configs
-│   ├── input/                   # JMX test plan inputs (populated by open-api service)
-│   ├── output/                  # Test results: CSV files + HTML reports
-│   ├── jmeter.Dockerfile        # JMeter 5.5 on Amazon Corretto 27 (Alpine)
+│   ├── input/                   # JMX plans jmeter runs; open-api downloads the spec here
+│   ├── output/                  # open-api's generated JMX; jmeter's CSVs + HTML reports
+│   ├── jmeter.Dockerfile        # JMeter on Amazon Corretto (Alpine)
 │   ├── jmeter.entrypoint.sh
-│   ├── open-api.Dockerfile      # OpenAPI-to-JMX converter (openapi-generator-cli v6.0.1)
+│   ├── open-api.Dockerfile      # OpenAPI-to-JMX converter (openapi-generator-cli)
 │   ├── open-api.entrypoint.sh
 │   └── result_describer         # Python CSV analyzer script
-├── nghttp2/                     # h2load container (Alpine 3.24.2)
+├── nghttp2/                     # h2load container (Alpine)
 │   ├── Dockerfile
 │   └── entrypoint.sh
 ├── grafana/
@@ -178,10 +176,7 @@ Modify these in docker-compose files for your target APIs:
 - **Load test execution**: Varies based on configuration (seconds to hours)
 - **Result analysis**: Instant for Python scripts
 
-**CRITICAL TIMING NOTES:**
-- **NEVER CANCEL** builds or long-running commands
-- Set timeouts to 600+ seconds for builds, 900+ seconds for full test runs
-- Network-dependent operations may take significantly longer in restricted environments
+Long builds and test runs are slow, not hung: use timeouts of 600+ seconds for builds and 900+ seconds for full test runs, longer on restricted networks.
 
 <!-- chlog:start -->
 ## Changelog (chlog) — MANDATORY

@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'moved the agent instructions from `CLAUDE.md` to `AGENTS.md`, keeping a `CLAUDE.md` that imports it, and refreshed `AGENTS.md`, `.github/copilot-instructions.md`, the code-review skill and `CONTRIBUTING.md` to correct the JMeter `input/`/`output/` flow, the `result_describer` invocation, the `WSL_GATEWAY` requirement and stale references'
+time: '2026-10-28T22:38:03.81633341Z'
