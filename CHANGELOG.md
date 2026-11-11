@@ -22,6 +22,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.5.6] - 2026-11-11
+
+### Changed
+
+- changed the Docker base image `alpine` from `3.24.3` to `3.24.4`
+
 ## [0.5.5] - 2026-11-04
 
 ### Changed
